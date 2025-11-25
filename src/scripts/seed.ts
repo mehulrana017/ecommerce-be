@@ -219,36 +219,16 @@ const products = [
     reviewCount: 241,
     isActive: true,
   },
-  {
-    name: "Desk Organizer Set",
-    description:
-      "Bamboo desk organizer set with multiple compartments for pens, papers, and office supplies. Eco-friendly and stylish design.",
-    images: [
-      "https://images.unsplash.com/photo-1587303538302-54d82ad2716a",
-      "https://images.unsplash.com/photo-1594834018843-5562e193d113",
-    ],
-    price: 27.99,
-    stock: 130,
-    category: 6, // Home & Kitchen
-    tags: ["organizer", "desk", "bamboo", "office"],
-    rating: 4.0,
-    reviewCount: 58,
-    isActive: true,
-  },
 ];
 
 export const seedDatabase = async () => {
   try {
-    // Check if data already exists
-    const categoryCount = await Category.countDocuments();
-    const productCount = await Product.countDocuments();
-
-    if (categoryCount > 0 || productCount > 0) {
-      console.log("✅ Database already seeded, skipping...");
-      return;
-    }
-
     console.log("🌱 Seeding database...");
+
+    // Clear existing data
+    await Product.deleteMany({});
+    await Category.deleteMany({});
+    console.log("🗑️  Cleared existing data");
 
     // Insert categories
     const insertedCategories = await Category.insertMany(categories);

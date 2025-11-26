@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/server.ts",
     "prod": "npm run build && npm start",
     "lint": "eslint src --ext .ts",
     "format": "prettier --write \"src/**/*.ts\""
@@ -16,7 +16,7 @@
     "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20.0.0",
-    "tsx": "^4.7.0",
+    "tsx": "^4.20.6",
     "typescript": "^5.0.0"
   },
   "dependencies": {

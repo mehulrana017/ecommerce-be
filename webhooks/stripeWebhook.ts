@@ -1,8 +1,8 @@
 import express, { type Request, type Response, type Router } from "express";
 import Stripe from "stripe";
-import Order from "../src/models/orderModel";
-import Cart from "../src/models/cartModel";
-import Product from "../src/models/productModel";
+import Order from "../src/models/orderModel.ts";
+import Cart from "../src/models/cartModel.ts";
+import Product from "../src/models/productModel.ts";
 
 // Initialize Stripe with proper key validation
 const getStripeInstance = (): Stripe => {

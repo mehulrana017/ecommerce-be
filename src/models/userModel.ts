@@ -1,10 +1,11 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-// User role enum
-export enum UserRole {
-  USER = "user",
-  ADMIN = "admin"
-}
+export const UserRole = {
+  USER: "user",
+  ADMIN: "admin",
+} as const;
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole];
 
 // Interface for the User model
 interface IUser extends Document {
@@ -24,7 +25,7 @@ const userSchema: Schema = new Schema(
     role: {
       type: String,
       enum: Object.values(UserRole),
-      default: UserRole.USER
+      default: UserRole.USER,
     },
     createdAt: { type: Date, default: Date.now },
   },

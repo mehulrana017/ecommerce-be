@@ -1,7 +1,7 @@
 import type { Response } from "express";
 import Stripe from "stripe";
-import Cart from "../models/cartModel";
-import type { AuthRequest } from "../middlewares/auth";
+import Cart from "../models/cartModel.ts";
+import type { AuthRequest } from "../middlewares/auth.ts";
 
 // Initialize Stripe with proper key validation
 const getStripeInstance = (): Stripe => {

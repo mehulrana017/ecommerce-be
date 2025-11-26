@@ -1,7 +1,7 @@
 import type { Response } from "express";
-import Cart from "../models/cartModel";
-import Product from "../models/productModel";
-import type { AuthRequest } from "../middlewares/auth";
+import Cart from "../models/cartModel.ts";
+import Product from "../models/productModel.ts";
+import type { AuthRequest } from "../middlewares/auth.ts";
 
 /**
  * GET /api/v1/cart

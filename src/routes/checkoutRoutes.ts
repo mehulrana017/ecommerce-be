@@ -1,6 +1,6 @@
 import express, { Router } from "express";
-import { authenticateToken } from "../middlewares/auth";
-import { createCheckoutSession } from "../controllers/checkoutController";
+import { authenticateToken } from "../middlewares/auth.ts";
+import { createCheckoutSession } from "../controllers/checkoutController.ts";
 
 const router: Router = express.Router();
 

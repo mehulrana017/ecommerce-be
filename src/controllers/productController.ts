@@ -1,6 +1,5 @@
 import { type Request, type Response } from "express";
-import Product from "../models/productModel";
-import Category from "../models/categoryModel";
+import Product from "../models/productModel.ts";
 
 /**
  * List All the products with pagination and filters

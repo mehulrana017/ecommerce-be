@@ -1,11 +1,11 @@
 import express, { Router } from "express";
-import { authenticateToken } from "../middlewares/auth";
+import { authenticateToken } from "../middlewares/auth.ts";
 import {
   getOrders,
   getOrderById,
   createOrder,
   cancelOrder,
-} from "../controllers/orderController";
+} from "../controllers/orderController.ts";
 
 const router: Router = express.Router();
 

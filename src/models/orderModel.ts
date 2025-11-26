@@ -18,15 +18,15 @@ interface IShippingAddress {
   country: string;
 }
 
-// Order status enum
-enum OrderStatus {
-  PENDING = "pending",
-  PROCESSING = "processing",
-  SHIPPED = "shipped",
-  DELIVERED = "delivered",
-  CANCELLED = "cancelled",
-}
+const OrderStatus = {
+  PENDING: "pending",
+  PROCESSING: "processing",
+  SHIPPED: "shipped",
+  DELIVERED: "delivered",
+  CANCELLED: "cancelled",
+} as const;
 
+type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus];
 // Interface for the Order model
 interface IOrder extends Document {
   orderId: string;

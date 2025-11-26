@@ -1,7 +1,6 @@
-import Product from "../models/productModel";
-import Category from "../models/categoryModel";
-import User, { UserRole } from "../models/userModel";
-import bcrypt from "bcrypt";
+import Product from "../models/productModel.ts";
+import Category from "../models/categoryModel.ts";
+import User from "../models/userModel.ts";
 
 // Category data with integer IDs
 const categories = [

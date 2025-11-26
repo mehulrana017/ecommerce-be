@@ -1,12 +1,12 @@
 import express, { Router } from "express";
-import { authenticateToken } from "../middlewares/auth";
+import { authenticateToken } from "../middlewares/auth.ts";
 import {
   getCart,
   addToCart,
   updateCartItem,
   removeFromCart,
   clearCart,
-} from "../controllers/cartController";
+} from "../controllers/cartController.ts";
 
 const router: Router = express.Router();
 

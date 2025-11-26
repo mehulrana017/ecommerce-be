@@ -1,7 +1,7 @@
 import { type Response } from "express";
-import Order, { OrderStatus } from "../models/orderModel";
-import Product from "../models/productModel";
-import type { AuthRequest } from "../middlewares/auth";
+import Order, { OrderStatus } from "../models/orderModel.ts";
+import Product from "../models/productModel.ts";
+import type { AuthRequest } from "../middlewares/auth.ts";
 
 /**
  * List all Orders

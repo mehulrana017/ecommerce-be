@@ -1,7 +1,7 @@
 import { type Request, type Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User, { UserRole } from "../models/userModel";
+import User, { UserRole } from "../models/userModel.ts";
 
 /**
  * Register a new user
@@ -28,9 +28,8 @@ export const registerUser = async (
       username,
       email,
       password: hashedPassword,
-      role: role && Object.values(UserRole).includes(role)
-        ? role
-        : UserRole.USER  // Default to USER if invalid or not provided
+      role:
+        role && Object.values(UserRole).includes(role) ? role : UserRole.USER, // Default to USER if invalid or not provided
     });
 
     await newUser.save();
@@ -89,8 +88,8 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         id: user._id,
         username: user.username,
         email: user.email,
-        role: user.role
-      }
+        role: user.role,
+      },
     });
   } catch (error) {
     console.error(error);

@@ -1,14 +1,14 @@
 import express, { type Application } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import connectToDatabase from "./config/db";
-import authRoutes from "./routes/authRoutes";
-import productRoutes from "./routes/productRoutes";
-import orderRoutes from "./routes/orderRoutes";
-import cartRoutes from "./routes/cartRoutes";
-import checkoutRoutes from "./routes/checkoutRoutes";
-import stripeWebhook from "../webhooks/stripeWebhook";
-import { seedDatabase } from "./scripts/seed";
+import connectToDatabase from "./config/db.ts";
+import authRoutes from "./routes/authRoutes.ts";
+import productRoutes from "./routes/productRoutes.ts";
+import orderRoutes from "./routes/orderRoutes.ts";
+import cartRoutes from "./routes/cartRoutes.ts";
+import checkoutRoutes from "./routes/checkoutRoutes.ts";
+import stripeWebhook from "../webhooks/stripeWebhook.ts";
+import { seedDatabase } from "./scripts/seed.ts";
 
 // Load environment variables
 dotenv.config();

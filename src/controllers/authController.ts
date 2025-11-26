@@ -1,7 +1,7 @@
 import { type Request, type Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../models/userModel";
+import User, { UserRole } from "../models/userModel";
 
 /**
  * Register a new user
@@ -10,7 +10,7 @@ export const registerUser = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { name: username, email, password } = req.body;
+  const { name: username, email, password, role } = req.body;
 
   try {
     // Check if user already exists
@@ -23,20 +23,24 @@ export const registerUser = async (
     // Hash the password before saving it to the DB
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
+    // Create a new user with role validation
     const newUser = new User({
       username,
       email,
       password: hashedPassword,
+      role: role && Object.values(UserRole).includes(role)
+        ? role
+        : UserRole.USER  // Default to USER if invalid or not provided
     });
 
     await newUser.save();
 
-    // Return user without password
+    // Return user without password, but include role
     const userResponse = {
       _id: newUser._id,
       username: newUser.username,
       email: newUser.email,
+      role: newUser.role,
       createdAt: newUser.createdAt,
     };
 
@@ -74,10 +78,20 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET || "secret",
-      { expiresIn: "1h" }
+      { expiresIn: "30d" }
     );
 
-    res.status(200).json({ message: "Login successful", token });
+    // Return token and user info with role
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role
+      }
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error logging in" });

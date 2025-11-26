@@ -1,5 +1,7 @@
 import Product from "../models/productModel";
 import Category from "../models/categoryModel";
+import User, { UserRole } from "../models/userModel";
+import bcrypt from "bcrypt";
 
 // Category data with integer IDs
 const categories = [
@@ -228,6 +230,7 @@ export const seedDatabase = async () => {
     // Clear existing data
     await Product.deleteMany({});
     await Category.deleteMany({});
+    await User.deleteMany({});
     console.log("🗑️  Cleared existing data");
 
     // Insert categories

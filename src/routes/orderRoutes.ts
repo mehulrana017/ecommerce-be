@@ -1,6 +1,5 @@
 import express, { Router } from "express";
-import { loginUser, registerUser } from "../controllers/authController";
-import { getProductById, getProducts } from "../controllers/productController";
+import { authenticateToken } from "../middlewares/auth";
 import {
   getOrders,
   getOrderById,
@@ -10,24 +9,31 @@ import {
 
 const router: Router = express.Router();
 
-/**
- * Route to list all the orders
- */
-router.get("/orders", getOrders);
+// All order routes require authentication
+router.use(authenticateToken);
 
 /**
- * Route to get order by orders id
+ * GET /api/v1/orders
+ * List all user's orders
  */
-router.get("/orders/:id", getOrderById);
+router.get("/", getOrders);
 
 /**
- * Route to create new order
+ * GET /api/v1/orders/:id
+ * Get order by ID
  */
-router.post("/orders/new", createOrder);
+router.get("/:id", getOrderById);
 
 /**
- * Route to get order by orders id
+ * POST /api/v1/orders
+ * Create new order
  */
-router.post("/orders/:id", cancelOrder);
+router.post("/", createOrder);
+
+/**
+ * POST /api/v1/orders/:id/cancel
+ * Cancel order
+ */
+router.post("/:id/cancel", cancelOrder);
 
 export default router;

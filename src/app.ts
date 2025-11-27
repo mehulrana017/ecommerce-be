@@ -1,5 +1,9 @@
-import express, { type Application } from "express";
 import dotenv from "dotenv";
+
+// Load environment variables FIRST, before any other imports
+dotenv.config();
+
+import express, { type Application } from "express";
 import cors from "cors";
 import connectToDatabase from "./config/db.ts";
 import authRoutes from "./routes/authRoutes.ts";
@@ -9,9 +13,6 @@ import cartRoutes from "./routes/cartRoutes.ts";
 import checkoutRoutes from "./routes/checkoutRoutes.ts";
 import stripeWebhook from "../webhooks/stripeWebhook.ts";
 import { seedDatabase } from "./scripts/seed.ts";
-
-// Load environment variables
-dotenv.config();
 
 // Initialize the Express app
 const app: Application = express();
